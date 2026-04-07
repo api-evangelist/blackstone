@@ -1,7 +1,12 @@
 aid: blackstone
-url: https://raw.githubusercontent.com/api-evangelist/blackstone/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/blackstone/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.blackstone.com
+description: >-
+  Blackstone is the world’s largest alternative asset manager, serving institutional
+  and individual investors by building strong businesses positioned to deliver lasting
+  value.
