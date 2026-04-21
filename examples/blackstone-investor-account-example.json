@@ -1,0 +1,25 @@
+{
+  "accountId": "LP-CALPERS-001",
+  "investorName": "California Public Employees' Retirement System",
+  "investorType": "pension_fund",
+  "currency": "USD",
+  "commitments": [
+    {
+      "fundId": "BX-RE-XI",
+      "committedAmount": 500000000,
+      "calledAmount": 135000000,
+      "distributedAmount": 0,
+      "nav": 143800000
+    },
+    {
+      "fundId": "BX-PE-IX",
+      "committedAmount": 400000000,
+      "calledAmount": 380000000,
+      "distributedAmount": 290000000,
+      "nav": 520000000
+    }
+  ],
+  "totalNav": 663800000,
+  "totalDistributions": 290000000,
+  "asOfDate": "2026-03-31"
+}

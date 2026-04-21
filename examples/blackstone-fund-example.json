@@ -1,0 +1,14 @@
+{
+  "fundId": "BX-RE-XI",
+  "fundName": "Blackstone Real Estate Partners XI",
+  "strategy": "real_estate",
+  "vintage": 2023,
+  "currency": "USD",
+  "committedCapital": 30500000000,
+  "calledCapital": 8200000000,
+  "nav": 8750000000,
+  "navDate": "2026-03-31",
+  "irr": 0.182,
+  "moic": 1.07,
+  "status": "investing"
+}

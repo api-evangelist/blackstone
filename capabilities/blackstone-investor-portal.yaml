@@ -1,0 +1,60 @@
+name: Blackstone Investor Portal Capability
+description: >-
+  Naftiko capability definition for Blackstone Investor Portal providing fund
+  reporting, capital account statements, and investor document access for
+  institutional limited partners.
+version: 1.0.0
+capabilities:
+  - name: listFunds
+    description: List Blackstone funds accessible to the authenticated investor
+    method: GET
+    path: /funds
+  - name: getFund
+    description: Retrieve details and performance metrics for a specific fund
+    method: GET
+    path: /funds/{fundId}
+    parameters:
+      - name: fundId
+        type: string
+        required: true
+  - name: getInvestorAccount
+    description: Retrieve capital account details for a specific investor commitment
+    method: GET
+    path: /accounts/{accountId}
+    parameters:
+      - name: accountId
+        type: string
+        required: true
+  - name: listDocuments
+    description: List investor documents including capital call and distribution notices
+    method: GET
+    path: /accounts/{accountId}/documents
+    parameters:
+      - name: accountId
+        type: string
+        required: true
+      - name: type
+        type: string
+        required: false
+        description: Filter by document type (capital_call, distribution, financial_statement, tax)
+  - name: getDocument
+    description: Download a specific investor document
+    method: GET
+    path: /documents/{documentId}
+  - name: listCapitalCalls
+    description: List capital call notices for an investor account
+    method: GET
+    path: /accounts/{accountId}/capital-calls
+  - name: listDistributions
+    description: List distribution notices for an investor account
+    method: GET
+    path: /accounts/{accountId}/distributions
+authentication:
+  type: oauth2
+  flows:
+    authorizationCode:
+      authorizationUrl: https://investor.blackstone.com/oauth/authorize
+      tokenUrl: https://investor.blackstone.com/oauth/token
+      scopes:
+        accounts:read: Read investor account data
+        documents:read: Access investor documents

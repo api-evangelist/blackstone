@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blackstone/main/json-schema/blackstone-investor-account-schema.json",
+  "title": "Blackstone Investor Account",
+  "description": "Schema for a limited partner investor account at Blackstone",
+  "type": "object",
+  "properties": {
+    "accountId": { "type": "string" },
+    "investorName": { "type": "string" },
+    "investorType": {
+      "type": "string",
+      "enum": ["pension_fund", "sovereign_wealth_fund", "endowment", "foundation", "insurance", "family_office", "hnwi", "other"]
+    },
+    "currency": { "type": "string" },
+    "commitments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fundId": { "type": "string" },
+          "committedAmount": { "type": "number" },
+          "calledAmount": { "type": "number" },
+          "distributedAmount": { "type": "number" },
+          "nav": { "type": "number" }
+        }
+      }
+    },
+    "totalNav": { "type": "number" },
+    "totalDistributions": { "type": "number" },
+    "asOfDate": { "type": "string", "format": "date" }
+  },
+  "required": ["accountId", "investorName", "currency"]
+}

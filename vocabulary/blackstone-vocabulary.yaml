@@ -1,0 +1,47 @@
+name: Blackstone API Vocabulary
+description: Key terms and concepts used in Blackstone's investment platform and data feeds
+terms:
+  - term: Limited Partner (LP)
+    definition: >-
+      An investor in a Blackstone fund who provides capital commitments but is not
+      involved in day-to-day management. LPs have limited liability equal to their commitment.
+  - term: General Partner (GP)
+    definition: >-
+      Blackstone serves as the general partner and fund manager, making investment
+      decisions and managing the portfolio on behalf of limited partners.
+  - term: Net Asset Value (NAV)
+    definition: >-
+      The fair market value of a fund's or investor account's holdings, calculated
+      quarterly by Blackstone's valuation committee and third-party auditors.
+  - term: Internal Rate of Return (IRR)
+    definition: >-
+      The annualized discount rate that makes the net present value of all cash
+      flows (contributions and distributions) equal to zero, used to measure fund performance.
+  - term: Multiple on Invested Capital (MOIC)
+    definition: >-
+      Total value (NAV plus distributions) divided by invested capital, expressed as a
+      multiple. A MOIC of 2.0x means the investment returned twice the invested amount.
+  - term: Vintage Year
+    definition: >-
+      The year in which a private equity or private credit fund begins making investments,
+      used to compare fund performance against peers of the same vintage.
+  - term: Capital Call
+    definition: >-
+      A request from the fund manager to investors to contribute a portion of their
+      committed capital to fund investments or expenses.
+  - term: Distribution
+    definition: >-
+      Return of capital or profits to limited partners, typically from asset sales,
+      refinancings, or dividend recapitalizations.
+  - term: Carried Interest
+    definition: >-
+      Blackstone's share of fund profits above a preferred return hurdle, typically 20%
+      of profits above an 8% preferred return.
+  - term: Dry Powder
+    definition: >-
+      Committed but uncalled capital available for future investments, representing
+      the fund's remaining investment capacity.
+  - term: Harvesting
+    definition: >-
+      The phase of a fund's lifecycle when the manager focuses on exiting investments
+      and returning capital to investors.

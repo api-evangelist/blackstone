@@ -1,0 +1,14 @@
+{
+  "name": "Blackstone Investor Account Structure",
+  "description": "JSON structure for a limited partner investor account at Blackstone",
+  "fields": [
+    { "name": "accountId", "type": "string", "required": true },
+    { "name": "investorName", "type": "string", "required": true },
+    { "name": "investorType", "type": "enum[pension_fund,sovereign_wealth_fund,endowment,foundation,insurance,family_office,hnwi,other]", "required": false },
+    { "name": "currency", "type": "string", "required": true },
+    { "name": "commitments", "type": "array<FundCommitment>", "required": false },
+    { "name": "totalNav", "type": "number", "required": false },
+    { "name": "totalDistributions", "type": "number", "required": false },
+    { "name": "asOfDate", "type": "date", "required": false }
+  ]
+}

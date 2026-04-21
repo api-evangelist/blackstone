@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/blackstone/main/json-schema/blackstone-fund-schema.json",
+  "title": "Blackstone Fund",
+  "description": "Schema for a Blackstone alternative investment fund record",
+  "type": "object",
+  "properties": {
+    "fundId": { "type": "string", "description": "Unique fund identifier" },
+    "fundName": { "type": "string", "description": "Full legal fund name" },
+    "strategy": {
+      "type": "string",
+      "enum": ["private_equity", "real_estate", "credit", "hedge_fund", "infrastructure", "life_sciences"],
+      "description": "Investment strategy"
+    },
+    "vintage": { "type": "integer", "description": "Fund vintage year" },
+    "currency": { "type": "string", "description": "Base currency (ISO 4217)" },
+    "committedCapital": { "type": "number", "description": "Total committed capital" },
+    "calledCapital": { "type": "number", "description": "Capital called to date" },
+    "nav": { "type": "number", "description": "Net asset value" },
+    "navDate": { "type": "string", "format": "date" },
+    "irr": { "type": "number", "description": "Internal rate of return" },
+    "moic": { "type": "number", "description": "Multiple on invested capital" },
+    "status": { "type": "string", "enum": ["fundraising", "investing", "harvesting", "closed"] }
+  },
+  "required": ["fundId", "fundName", "strategy", "currency"]
+}

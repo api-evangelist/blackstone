@@ -18,7 +18,7 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 created: '2026-03-21'
-modified: '2026-04-19'
+modified: '2026-04-21'
 specificationVersion: '0.19'
 apis:
   - aid: blackstone:blackstone-investor-portal
@@ -39,6 +39,20 @@ apis:
         url: https://www.blackstone.com/investor-resources/
       - type: Login
         url: https://investor.blackstone.com
+      - type: JSONSchema
+        url: json-schema/blackstone-fund-schema.json
+      - type: JSONSchema
+        url: json-schema/blackstone-investor-account-schema.json
+      - type: JSONStructure
+        url: json-structure/blackstone-fund-structure.json
+      - type: JSONStructure
+        url: json-structure/blackstone-investor-account-structure.json
+      - type: JSONLD
+        url: json-ld/blackstone-context.jsonld
+      - type: Example
+        url: examples/blackstone-fund-example.json
+      - type: Example
+        url: examples/blackstone-investor-account-example.json
 common:
   - type: Website
     url: https://www.blackstone.com
@@ -52,6 +66,12 @@ common:
     url: https://www.blackstone.com/privacy-policy/
   - type: Blog
     url: https://www.blackstone.com/insights/
+  - type: SpectralRules
+    url: rules/blackstone-spectral-rules.yml
+  - type: NaftikoCapability
+    url: capabilities/blackstone-investor-portal.yaml
+  - type: Vocabulary
+    url: vocabulary/blackstone-vocabulary.yaml
   - type: Features
     data:
       - name: Investor Portal
@@ -71,6 +91,14 @@ common:
         description: >-
           Blackstone actively supports portfolio companies in technology transformation,
           digital infrastructure buildout, and enterprise software adoption.
+      - name: Capital Call and Distribution Notices
+        description: >-
+          Automated delivery of capital call and distribution notices to investors
+          via the portal, email, and data feed integrations.
+      - name: Tax Document Delivery
+        description: >-
+          Annual K-1 and other tax documents delivered electronically to limited
+          partners through the Investor Portal.
   - type: UseCases
     data:
       - name: Institutional Investor Reporting
@@ -85,6 +113,10 @@ common:
         description: >-
           Third-party data aggregators and institutional investor platforms may
           access Blackstone investor data via direct data feed agreements.
+      - name: Wealth Management Distribution
+        description: >-
+          Registered investment advisors and wealth managers access Blackstone
+          alternative products through platform integrations for accredited investor clients.
   - type: Integrations
     data:
       - name: iCapital Network
@@ -99,6 +131,10 @@ common:
         description: >-
           Blackstone Real Estate uses Yardi for property management, accounting,
           and data reporting across its real estate portfolio.
+      - name: Allvue Systems
+        description: >-
+          Blackstone's credit and private equity operations use Allvue for portfolio
+          monitoring, investor reporting, and fund accounting.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

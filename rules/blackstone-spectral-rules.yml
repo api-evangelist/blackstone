@@ -1,0 +1,44 @@
+rules:
+  blackstone-fund-strategy-enum:
+    description: Fund strategy must be one of the defined values
+    message: "Fund strategy must use a defined enum value"
+    given: "$.components.schemas.Fund.properties.strategy"
+    then:
+      field: enum
+      function: truthy
+
+  blackstone-currency-required:
+    description: Financial records must include a currency field
+    message: "Currency is required on financial records"
+    given: "$.components.schemas[*].properties"
+    then:
+      field: currency
+      function: defined
+
+  blackstone-date-iso-format:
+    description: Date fields must use ISO 8601 format
+    message: "Date fields must specify format: date or date-time"
+    given: "$.components.schemas[*].properties[?(@.description =~ /date/i)]"
+    then:
+      field: format
+      function: pattern
+      functionOptions:
+        match: "^date"
+
+  blackstone-operations-have-descriptions:
+    description: All API operations should include descriptions
+    message: "Operation is missing a description"
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  blackstone-ids-are-strings:
+    description: All ID fields should be of type string
+    message: "ID fields must be of type string"
+    given: "$.components.schemas[*].properties[?(@.description =~ /identifier|id/i)]"
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "^string$"

@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "blackstone": "https://www.blackstone.com/ontology/",
+    "fundId": "blackstone:fundId",
+    "fundName": "name",
+    "strategy": "blackstone:investmentStrategy",
+    "vintage": "blackstone:vintageYear",
+    "nav": "blackstone:netAssetValue",
+    "navDate": "blackstone:navDate",
+    "irr": "blackstone:internalRateOfReturn",
+    "moic": "blackstone:multipleOnInvestedCapital",
+    "committedCapital": "blackstone:committedCapital",
+    "calledCapital": "blackstone:calledCapital",
+    "accountId": "blackstone:accountId",
+    "investorName": "blackstone:investorName",
+    "investorType": "blackstone:investorType",
+    "currency": "https://schema.org/currency"
+  }
+}
