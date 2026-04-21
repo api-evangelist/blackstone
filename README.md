@@ -1,33 +1,71 @@
 # Blackstone (blackstone)
-Blackstone is a Fortune 500 company. This repository captures the APIs, developer tools, and machine-readable API artifacts for Blackstone.
+Blackstone is the world's largest alternative asset manager with over $1 trillion in assets under management across private equity, real estate, credit, and hedge fund strategies. Blackstone serves institutional investors including pension funds, sovereign wealth funds, endowments, and foundations, as well as accredited individual investors through its private wealth solutions. Technology and data platforms are central to Blackstone's investment operations and portfolio company management.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/blackstone/refs/heads/main/apis.yml)
+**URL:** [https://www.blackstone.com](https://www.blackstone.com)
 
-## Scope
-
-- **Type:** Contract
-- **Position:** Consuming
-- **Access:** 3rd-Party
+**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
 
 ## Tags:
 
- - Fortune 500
+ - Alternative Assets, Finance, Investment Management, Private Equity, Real Estate
 
 ## Timestamps
 
 - **Created:** 2026-03-21
-- **Modified:** 2026-03-21
+- **Modified:** 2026-04-19
 
 ## APIs
 
-No public APIs have been documented yet. Contributions welcome.
+### Blackstone Investor Portal
+Blackstone provides institutional and individual investors with access to portfolio information, capital account statements, fund documents, and reporting through its Investor Portal. API integrations may be available for institutional investors and data aggregation platforms under direct agreement with Blackstone.
+
+**Human URL:** [https://www.blackstone.com/investor-resources/](https://www.blackstone.com/investor-resources/)
+
+#### Tags:
+
+ - Alternative Assets, Finance, Investment Management, Private Equity
+
+#### Properties
+
+- [Documentation](https://www.blackstone.com/investor-resources/)
+- [Login](https://investor.blackstone.com)
 
 ## Common Properties
 
 - [Website](https://www.blackstone.com)
+- [Documentation](https://www.blackstone.com/investor-resources/)
+- [Login](https://investor.blackstone.com)
+- [Terms of Service](https://www.blackstone.com/terms-and-conditions/)
+- [Privacy Policy](https://www.blackstone.com/privacy-policy/)
+- [Blog](https://www.blackstone.com/insights/)
+
+## Features
+
+| Name | Description |
+|------|-------------|
+| Investor Portal | Web-based portal providing investors with access to fund performance, capital account statements, distributions, and investor documents. |
+| Fund Reporting | Quarterly and annual fund-level reporting including audited financials, NAV calculations, and investor-level P&L attribution. |
+| Alternative Data Integration | Blackstone's data science and technology teams develop proprietary data products and integrations to support portfolio company operations and investment research. |
+| Portfolio Company Technology | Blackstone actively supports portfolio companies in technology transformation, digital infrastructure buildout, and enterprise software adoption. |
+
+## Use Cases
+
+| Name | Description |
+|------|-------------|
+| Institutional Investor Reporting | Institutional LPs access fund reporting, capital call and distribution notices, and tax documents through the investor portal or via data integrations. |
+| Portfolio Monitoring | Blackstone's investment teams use proprietary data platforms to monitor portfolio company performance metrics, market signals, and risk indicators. |
+| Data Aggregation | Third-party data aggregators and institutional investor platforms may access Blackstone investor data via direct data feed agreements. |
+
+## Integrations
+
+| Name | Description |
+|------|-------------|
+| iCapital Network | Blackstone distributes alternative investments to wealth management clients through iCapital Network's feeder fund and technology platform. |
+| CAIS | Blackstone alternative investment products are available through the CAIS platform for independent and institutional advisors. |
+| Yardi | Blackstone Real Estate uses Yardi for property management, accounting, and data reporting across its real estate portfolio. |
 
 ## Maintainers
 
-**FN:** API Evangelist
+**FN:** Kin Lane
 
-**Email:** info@apievangelist.com
+**Email:** kin@apievangelist.com
