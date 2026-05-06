@@ -1,133 +1,78 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Blackstone
+providerId: blackstone
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Alternative Assets
+  - Investment Management
+description: 'FOCUS-aligned FinOps placeholder for Blackstone: not a developer-facing platform.
+  Spend with Blackstone is captured as fund-level fees (management fee + carried interest) and any
+  portfolio-company contracts, not API consumption.'
+sources:
+  - https://www.blackstone.com/our-businesses/
+notes: Blackstone has no public API billing surface; this artifact exists for symmetry with peer
+  providers and should be revisited only if a developer offering launches.
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Blackstone
-providerId: blackstone
-publisherName: Blackstone
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Alternative Assets
-  - Finance
-  - Investment Management
-  - Private Equity
-  - Real Estate
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Blackstone API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: The Blackstone Group Inc.
+serviceCategory: Alternative Asset Management
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Fund Fees (Management + Carry) / Contract
+  billingFrequency: Per-Contract
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Blackstone
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Alternative Asset Management
   ProviderName: Blackstone
-  PublisherName: Blackstone
-  InvoiceIssuerName: Blackstone
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: The Blackstone Group Inc.
+  InvoiceIssuerName: The Blackstone Group Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: management_fees
+    unit: USD
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - fund
+      - vintage
+  - name: carried_interest
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - fund
+      - vintage
+  - name: portfolio_company_contracts
+    unit: contract
+    aggregation: count
+    dimensions:
+      - portfolio_company
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Blackstone Investor Portal
-    baseURL: ''
-    tags:
-      - Alternative Assets
-      - Finance
-      - Investment Management
-      - Private Equity
-    serviceName: Blackstone Investor Portal
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Use LP capital-account statements and quarterly fund reporting from Blackstone
+      Investor Relations; no API telemetry exists.
+  - name: Allocation
+    description: Map fund commitments and side-letter terms to consuming entities through the LP
+      reporting pack.
+  - name: Optimization
+    description: Negotiate side-letter fee discounts at commitment time; consolidate commitments
+      across affiliates to reach fee-tier breakpoints.
+  - name: Accountability
+    description: Designate an LP-relations owner per fund commitment; review fund performance and
+      fee burn each quarter.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
