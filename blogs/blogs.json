@@ -1,0 +1,13 @@
+{
+  "repo": "blackstone",
+  "feeds": [
+    {
+      "source": "https://www.blackstone.com/insights/",
+      "feed_url": "https://www.blackstone.com/insights/feed/",
+      "title": "Insights - Blackstone",
+      "saved": 10
+    }
+  ],
+  "fetched": "2026-05-09T20:17:51Z",
+  "post_count": 10
+}
