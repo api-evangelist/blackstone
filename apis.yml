@@ -54,6 +54,8 @@ apis:
       - type: Example
         url: examples/blackstone-investor-account-example.json
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/blackstoneinc
   - type: Website
     url: https://www.blackstone.com
   - type: Documentation
