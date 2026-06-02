@@ -2,12 +2,20 @@
   "repo": "blackstone",
   "feeds": [
     {
-      "source": "https://www.blackstone.com/insights/",
+      "source": "https://www.blackstone.com/insights/feed/",
       "feed_url": "https://www.blackstone.com/insights/feed/",
-      "title": "Insights - Blackstone",
-      "saved": 0
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.blackstone.com/privacy-policy/",
+      "feed_url": "https://www.blackstone.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "fetched": "2026-05-17T20:20:35Z",
-  "post_count": 10
+  "fetched": "2026-06-01T23:35:02Z",
+  "post_count": 12
 }
