@@ -2,11 +2,11 @@
   "repo": "blackstone",
   "feeds": [
     {
-      "source": "https://www.blackstone.com/insights/feed/",
-      "feed_url": "https://www.blackstone.com/insights/feed/",
+      "source": "https://www.blackstone.com/insights/",
+      "feed_url": "https://www.blackstone.com/feed/",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "discovered"
     },
     {
       "source": "https://www.blackstone.com/privacy-policy/",
@@ -16,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
-  "post_count": 12
+  "post_count": 14,
+  "fetched": "2026-06-14T20:42:17Z"
 }
