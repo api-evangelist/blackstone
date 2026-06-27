@@ -50,9 +50,9 @@ apis:
         url: json-structure/blackstone-investor-account-structure.json
       - type: JSONLD
         url: json-ld/blackstone-context.jsonld
-      - type: Example
+      - type: Examples
         url: examples/blackstone-fund-example.json
-      - type: Example
+      - type: Examples
         url: examples/blackstone-investor-account-example.json
 common:
   - type: LinkedIn
@@ -71,7 +71,7 @@ common:
     url: https://www.blackstone.com/insights/
   - type: SpectralRules
     url: rules/blackstone-spectral-rules.yml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/blackstone-investor-portal.yaml
   - type: Vocabulary
     url: vocabulary/blackstone-vocabulary.yaml
