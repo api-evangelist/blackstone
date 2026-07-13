@@ -9,6 +9,13 @@
       "method": "feed"
     },
     {
+      "source": "https://www.blackstone.com/feed/",
+      "feed_url": "https://www.blackstone.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.blackstone.com/privacy-policy/",
       "feed_url": "https://www.blackstone.com/feed/",
       "title": "",
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 14,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 19,
+  "fetched": "2026-07-11T11:50:51Z"
 }
