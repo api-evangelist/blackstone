@@ -1,0 +1,188 @@
+generated: '2026-08-10'
+method: probed
+source: live HTTP probes of every Blackstone-operated host reachable from apis.yml
+provider: Blackstone
+providerId: blackstone
+description: >-
+  Blackstone operates no public developer API host, so the /.well-known/ surface was probed
+  against the corporate site, the gated developer documentation site, the BXAccess investor
+  portal, the investor-relations host, and the two identity hosts Blackstone runs on its bx.com
+  domain. The only genuine discovery documents served anywhere in the estate are the OAuth /
+  OpenID Connect metadata published by those two identity hosts: the Okta tenant at
+  login.bx.com and the identity broker at auth.bx.com that fronts the BXAccess investor portal.
+  Everything else either 403s behind a Cloudflare managed challenge, 307s to an Okta
+  visitor-auth wall, or answers 200 with an HTML/error shell that is not a document.
+hosts:
+  - host: https://login.bx.com
+    role: Okta identity tenant (bx.customdomains.okta.com) — firmwide workforce and partner SSO
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        file: blackstone-login-bx-openid-configuration.json
+        real_document: true
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: blackstone-login-bx-oauth-authorization-server.json
+        real_document: true
+        note: >-
+          Okta org authorization server. Its scopes_supported list is Okta's own management-API
+          scope catalog (okta.users.read, okta.apps.manage, ...), not a Blackstone business API.
+      - path: /.well-known/oauth-protected-resource
+        status: 405
+        real_document: false
+      - path: /.well-known/security.txt
+        status: 405
+        real_document: false
+      - path: /.well-known/api-catalog
+        status: 405
+        real_document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 404
+        real_document: false
+  - host: https://auth.bx.com
+    role: >-
+      Identity broker fronting the BXAccess investor portal; named as OIDC_PROVIDER
+      AUTHORITY_URL_BASE in the portal's own public runtime config at
+      https://www.bxaccess.com/bxa-next/env.json
+    documents:
+      - path: /identity-broker/.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        file: blackstone-auth-bx-openid-configuration.json
+        real_document: true
+      - path: /identity-broker/.well-known/jwks.json
+        status: 200
+        content_type: application/json
+        file: blackstone-auth-bx-jwks.json
+        real_document: true
+      - path: /identity-broker/.well-known/oauth-authorization-server
+        status: 403
+        real_document: false
+      - path: /identity-broker/.well-known/oauth-protected-resource
+        status: 403
+        real_document: false
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: >-
+          SOFT 200 — the SPA catch-all returns the same 493-byte HTML shell for every
+          /.well-known/* path. Not a document; recorded as a miss.
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: Same 493-byte SPA shell. Not an agent card.
+      - path: /.well-known/agent.json
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: Same 493-byte SPA shell. Not an agent card.
+  - host: https://www.blackstone.com
+    role: Corporate website
+    note: >-
+      Every path returns 403 with `cf-mitigated: challenge` — a Cloudflare managed challenge that
+      blocks all non-browser clients, including the /.well-known/ surface.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 403
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 403
+        real_document: false
+      - path: /robots.txt
+        status: 403
+        real_document: false
+  - host: https://docs.blackstone.com
+    role: >-
+      Blackstone's GitBook-hosted documentation site (DNS CNAME 9efd7d77c3-hosting.gitbook.io),
+      gated by the GitBook VA-Okta visitor-auth integration against login.bx.com
+    note: >-
+      EVERY path — including /openapi.json, /llms.txt, /robots.txt and the whole /.well-known/
+      tree — returns 307 to
+      integrations.gitbook.com/v1/integrations/VA-Okta/installations/.../sites/site_R8AYG/visitor-auth.
+      Nothing is readable without an Okta session.
+    documents:
+      - path: /.well-known/security.txt
+        status: 307
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 307
+        real_document: false
+      - path: /openapi.json
+        status: 307
+        real_document: false
+      - path: /llms.txt
+        status: 307
+        real_document: false
+  - host: https://www.bxaccess.com
+    role: BXAccess — the Blackstone investor portal (LP document + reporting access)
+    note: >-
+      All /.well-known/ and spec paths 302 to /auth/login. The portal's unauthenticated runtime
+      config at /bxa-next/env.json IS readable (200, application/json) and is what identified
+      auth.bx.com as the identity broker.
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        real_document: false
+      - path: /.well-known/openid-configuration
+        status: 302
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 302
+        real_document: false
+      - path: /openapi.json
+        status: 302
+        real_document: false
+      - path: /llms.txt
+        status: 302
+        real_document: false
+      - path: /bxa-next/env.json
+        status: 200
+        content_type: application/json
+        real_document: true
+        note: >-
+          Portal runtime config, not a /.well-known/ document — recorded here because it is the
+          only unauthenticated machine-readable file the portal serves.
+  - host: https://ir.blackstone.com
+    role: Investor-relations site (Q4 Inc. hosting)
+    note: >-
+      Answers 200 with an 11-byte body reading "Invalid key" for /.well-known/agent-card.json,
+      /.well-known/agent.json and /.well-known/ai-plugin.json. This is a soft-200, NOT a
+      document — treated as a miss so no agent-card or plugin presence is credited.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: 11-byte "Invalid key" body. Soft 200.
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: 11-byte "Invalid key" body. Soft 200.
+      - path: /robots.txt
+        status: 200
+        content_type: text/plain
+        real_document: true
+        note: 'Allows all crawlers; Crawl-delay: 10.'
+summary:
+  hosts_probed: 6
+  real_documents_found: 5
+  security_txt_served: false
+  agent_card_served: false
+  openid_configuration_served: true
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

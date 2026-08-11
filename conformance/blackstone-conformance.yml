@@ -1,0 +1,94 @@
+generated: '2026-08-10'
+method: derived
+source: >-
+  well-known/blackstone-well-known.yml, authentication/blackstone-authentication.yml,
+  security/blackstone-domain-security.yml
+provider: Blackstone
+providerId: blackstone
+description: >-
+  Cross-cutting standards conformance for Blackstone, asserted only where a fetched artifact
+  proves it. Blackstone ships no public API contract, so every API-shaped standard below is
+  recorded as not-conformant-or-unknown rather than assumed. The two standards it genuinely
+  conforms to are the OAuth 2.0 / OpenID Connect discovery specs, because both of its identity
+  issuers serve valid metadata documents anonymously.
+standards:
+  - id: oidc
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: >-
+      https://auth.bx.com/identity-broker/.well-known/openid-configuration and
+      https://login.bx.com/.well-known/openid-configuration both return 200 application/json with
+      issuer, authorization_endpoint, token_endpoint, jwks_uri and scopes_supported.
+  - id: oauth2
+    name: OAuth 2.0 (RFC 6749)
+    conforms: true
+    evidence: >-
+      Both issuers advertise authorization and token endpoints and an authorization_code flow;
+      https://login.bx.com/.well-known/oauth-authorization-server returns 200 as an RFC 8414
+      authorization server metadata document.
+  - id: rfc8414
+    name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+    conforms: true
+    evidence: >-
+      https://login.bx.com/.well-known/oauth-authorization-server → 200 application/json.
+      Note the auth.bx.com broker returns 403 on this path and satisfies discovery only via the
+      OIDC document.
+  - id: pkce
+    name: 'PKCE (RFC 7636)'
+    conforms: partial
+    evidence: >-
+      login.bx.com advertises code_challenge_methods_supported [S256]. The auth.bx.com identity
+      broker that fronts the investor portal does NOT advertise PKCE support in its discovery
+      document.
+  - id: rfc9116
+    name: 'security.txt (RFC 9116)'
+    conforms: false
+    evidence: >-
+      No host in the estate serves a security.txt. www.blackstone.com → 403 (Cloudflare managed
+      challenge), login.bx.com → 405, auth.bx.com → soft 200 HTML shell, ir.blackstone.com →
+      200 with an 11-byte "Invalid key" body. Blackstone does publish a vulnerability disclosure
+      PAGE (see security/blackstone-vulnerability-disclosure.yml) but not the machine-readable file.
+  - id: openapi
+    name: OpenAPI
+    conforms: false
+    evidence: >-
+      No OpenAPI document is served from any Blackstone host. Every spec path on
+      docs.blackstone.com 307s to GitBook Okta visitor auth; www.bxaccess.com 302s to /auth/login.
+  - id: rfc9457
+    name: 'Problem Details for HTTP APIs (RFC 9457)'
+    conforms: unknown
+    evidence: No public API responses are observable, so the error envelope cannot be assessed.
+  - id: idempotency
+    name: Idempotency keys
+    conforms: unknown
+    evidence: No public API and no published conventions documentation.
+  - id: pagination
+    name: Published pagination convention
+    conforms: unknown
+    evidence: No public API reference.
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: No event, streaming, or webhook surface is published on any Blackstone host.
+  - id: a2a
+    name: 'A2A Agent Card (agent-card.json)'
+    conforms: false
+    evidence: >-
+      Probed /.well-known/agent-card.json and /.well-known/agent.json on all six reachable hosts
+      on 2026-08-10. Zero real cards: 403 (Cloudflare) on blackstone.com and bx.com, 307 on
+      docs.blackstone.com, 302 on bxaccess.com, 404 on login.bx.com, and soft-200 HTML shells on
+      auth.bx.com and ir.blackstone.com.
+  - id: mcp
+    name: Model Context Protocol server
+    conforms: false
+    evidence: No hosted MCP endpoint found on any Blackstone-operated host.
+compliance_programs_published: false
+compliance_note: >-
+  Blackstone publishes no public trust center, SOC 2 / ISO 27001 attestation page, or named
+  certification list. As an SEC-registered investment adviser and NYSE-listed issuer (BX) it is
+  subject to SEC Regulation S-P, Regulation S-ID and the SEC cybersecurity disclosure rules, and
+  it discloses cyber risk in its 10-K — but those are securities filings, not an API compliance
+  programme, so no Compliance pointer is emitted.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

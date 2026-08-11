@@ -1,11 +1,23 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+generated: '2026-08-10'
+method: searched
+source: >-
+  https://www.blackstone.com/our-businesses/ — searched 2026-08-10 for any published rate-limit
+  or throttling documentation across blackstone.com, docs.blackstone.com (Okta-gated) and the
+  BXAccess portal. None exists.
 provider: Blackstone
 providerId: blackstone
 created: '2026-05-04'
-modified: '2026-05-05'
+modified: '2026-08-10'
 reconciled: false
+limit_count: 0
+limit_count_note: >-
+  Blackstone publishes ZERO rate limits, because it publishes no API. No RateLimit-*, X-RateLimit-*
+  or Retry-After headers could be observed either: there is no unauthenticated API endpoint to
+  observe. The 429 recorded under responseCodes below is a generic convention, not something
+  Blackstone documents or was seen returning.
 tags:
   - Alternative Assets
   - Investment Management

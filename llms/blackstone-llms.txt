@@ -1,0 +1,86 @@
+# Blackstone
+
+> Blackstone (NYSE: BX) is the world's largest alternative asset manager, with over $1 trillion in
+> assets under management across private equity, real estate, credit and insurance, and hedge fund
+> solutions. It serves institutional investors — pension funds, sovereign wealth funds, endowments,
+> foundations — and accredited individual investors through its private wealth solutions business.
+
+<!--
+generated: 2026-08-10
+method: generated
+source: apis.yml + artifacts in this repository (Blackstone does not publish an llms.txt)
+-->
+
+## What an agent needs to know first
+
+Blackstone does **not** operate a public developer programme. There is no public API, no API
+reference, no OpenAPI document, no SDK, no sandbox, no API pricing, and no published rate limits.
+Every machine surface Blackstone runs is gated behind a login or a contract. An agent asked to
+"integrate with the Blackstone API" should stop here: the correct next step is a relationship
+conversation with Blackstone Investor Relations or the relevant business unit, not a signup form.
+
+What Blackstone does operate, and what is actually reachable:
+
+- **BXAccess** — the investor portal where limited partners retrieve capital account statements,
+  fund reporting, capital call and distribution notices, and K-1 tax documents. Login only.
+- **docs.blackstone.com** — a GitBook documentation site gated by Okta visitor authentication.
+  Its content is not public; even `/robots.txt` and `/llms.txt` redirect to the auth wall.
+- **Two OpenID Connect issuers** on the bx.com domain whose discovery metadata is public.
+  These authenticate people into the gated surfaces; they do not grant data access.
+
+## Public surfaces
+
+- [Blackstone](https://www.blackstone.com): Corporate site. Serves a Cloudflare managed challenge
+  to non-browser clients — expect HTTP 403 from any programmatic fetch.
+- [Investor Resources](https://www.blackstone.com/investor-resources/): Entry point for LP
+  reporting, forms, and the investor portal.
+- [BXAccess Investor Portal](https://www.bxaccess.com): The LP portal. Unauthenticated requests
+  302 to `/auth/login`.
+- [Investor Relations](https://ir.blackstone.com): Shareholder-facing filings, earnings, and
+  press releases for NYSE: BX. Publicly crawlable.
+- [Insights](https://www.blackstone.com/insights/): Blackstone's research and commentary blog.
+- [Responsible Vulnerability Disclosure](https://www.blackstone.com/responsible-vulnerability-disclosure/):
+  Security reporting programme. Encrypted email, five-business-day acknowledgement, no rewards.
+- [Terms and Conditions](https://www.blackstone.com/terms-and-conditions/)
+- [Privacy Policy](https://www.blackstone.com/privacy-policy/)
+
+## Identity endpoints (public discovery metadata)
+
+These are the only machine-readable documents Blackstone serves anonymously. They describe how a
+human signs in; no scope here confers access to fund or portfolio data.
+
+- `https://auth.bx.com/identity-broker/.well-known/openid-configuration` — issuer for BXAccess.
+  Scopes: `openid`, `email`, `phone`, `profile`.
+- `https://login.bx.com/.well-known/openid-configuration` — firmwide Okta tenant. Scopes:
+  `openid`, `email`, `profile`, `address`, `phone`, `offline_access`, `groups`. PKCE S256.
+- `https://login.bx.com/.well-known/oauth-authorization-server` — RFC 8414 metadata. Its
+  `scopes_supported` list is Okta's own management-API catalog, not a Blackstone API.
+
+## Gated surfaces (do not attempt to scrape)
+
+- `https://docs.blackstone.com` — 307 to GitBook VA-Okta visitor auth on every path.
+- `https://www.bxaccess.com` — 302 to `/auth/login` on every path.
+- `https://mdm.blackstone.com/DataManagement` — WS-Federation SSO, realm `www.bxaccess.com`.
+- `https://bxnexus.my.site.com/BlackstoneAdvantagePortal/` — Salesforce community login for advisors.
+
+## How data actually moves
+
+Institutional LPs and their aggregators receive Blackstone data through contracted feeds and the
+investor portal, not through a self-serve API. Distribution to wealth advisors runs through
+third-party platforms — iCapital Network and CAIS — which do have their own developer surfaces.
+An agent that needs Blackstone product data programmatically should look at those distribution
+platforms, or at the fund administrators, rather than at blackstone.com.
+
+## Artifacts in this profile
+
+- `well-known/blackstone-well-known.yml` — every `/.well-known/` path probed, with status codes.
+- `authentication/blackstone-authentication.yml` — the two OIDC issuers, endpoints, and gates.
+- `scopes/blackstone-scopes.yml` — the identity scopes actually advertised.
+- `conformance/blackstone-conformance.yml` — which standards hold, with evidence.
+- `security/blackstone-domain-security.yml` — TLS, HSTS, DNSSEC, CAA, SPF, DMARC.
+- `security/blackstone-vulnerability-disclosure.yml` — the disclosure programme.
+- `plans/blackstone-plans-pricing.yml` — no API plans exist; recorded as zero.
+- `rate-limits/blackstone-rate-limits.yml` — no published limits; recorded as zero.
+- `json-schema/`, `json-structure/`, `json-ld/`, `examples/`, `vocabulary/` — API Evangelist
+  models of fund and investor-account concepts. These are OUR derivations for catalog
+  consistency, not Blackstone-published schemas.

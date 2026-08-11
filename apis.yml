@@ -31,7 +31,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/blackstone.png
 created: '2026-03-21'
-modified: '2026-04-21'
+modified: '2026-08-10'
 specificationVersion: '0.19'
 apis:
   - aid: blackstone:blackstone-investor-portal
@@ -39,9 +39,24 @@ apis:
     description: >-
       Blackstone provides institutional and individual investors with access to portfolio
       information, capital account statements, fund documents, and reporting through its
-      Investor Portal. API integrations may be available for institutional investors and
-      data aggregation platforms under direct agreement with Blackstone.
+      Investor Portal, which is served at www.bxaccess.com (BXAccess). The portal is a
+      login-only surface: every unauthenticated path 302s to /auth/login and authentication
+      runs against Blackstone's own OpenID Connect identity broker at auth.bx.com. API
+      integrations may be available for institutional investors and data aggregation platforms
+      under direct agreement with Blackstone; none is publicly documented.
     humanURL: https://www.blackstone.com/investor-resources/
+    baseURL: https://www.bxaccess.com
+    x-evidence:
+      baseURL_method: probed
+      baseURL_fetched: '2026-08-10'
+      baseURL_source: https://www.bxaccess.com/bxa-next/env.json
+      baseURL_note: >-
+        www.bxaccess.com is the live host of the Blackstone Investor Portal (HTTP 200, title
+        "Investor Portal"). Its own published SPA bundle references first-party service paths
+        including /api-services/v1/documents, /portal/documents and /auth/bearerTokenAuthentication,
+        and its unauthenticated runtime config at /bxa-next/env.json declares the OIDC provider.
+        This is the portal's own backend, observed — NOT a documented public API. There is no
+        public API reference and /api-services/v1/documents returns 404 to anonymous callers.
     tags:
       - Alternative Assets
       - Finance
@@ -51,7 +66,9 @@ apis:
       - type: Documentation
         url: https://www.blackstone.com/investor-resources/
       - type: Login
-        url: https://investor.blackstone.com
+        url: https://www.bxaccess.com
+      - type: Support
+        url: https://www.bxaccess.com/Auth/NeedHelp
       - type: JSONSchema
         url: json-schema/blackstone-fund-schema.json
       - type: JSONSchema
@@ -76,7 +93,33 @@ common:
   - type: Documentation
     url: https://www.blackstone.com/investor-resources/
   - type: Login
-    url: https://investor.blackstone.com
+    url: https://www.bxaccess.com
+  - type: Support
+    url: https://www.bxaccess.com/Auth/NeedHelp
+  - type: InvestorRelations
+    url: https://ir.blackstone.com
+  - type: WellKnown
+    url: well-known/blackstone-well-known.yml
+  - type: Authentication
+    url: authentication/blackstone-authentication.yml
+  - type: OAuthScopes
+    url: scopes/blackstone-scopes.yml
+  - type: Conformance
+    url: conformance/blackstone-conformance.yml
+  - type: VulnerabilityDisclosure
+    url: security/blackstone-vulnerability-disclosure.yml
+  - type: Security
+    url: security/blackstone-vulnerability-disclosure.yml
+  - type: LLMsTxt
+    url: llms/blackstone-llms.txt
+  - type: Plans
+    url: plans/blackstone-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/blackstone-rate-limits.yml
+  - type: FinOps
+    url: finops/blackstone-finops.yml
+  - type: SpectralRules
+    url: rules/blackstone-jsonschema-spectral-rules.yml
   - type: TermsOfService
     url: https://www.blackstone.com/terms-and-conditions/
   - type: PrivacyPolicy
@@ -85,8 +128,6 @@ common:
     url: https://www.blackstone.com/insights/
   - type: SpectralRules
     url: rules/blackstone-spectral-rules.yml
-  - type: X-NaftikoCapability
-    url: capabilities/blackstone-investor-portal.yaml
   - type: Vocabulary
     url: vocabulary/blackstone-vocabulary.yaml
   - type: Features
@@ -155,3 +196,28 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-10'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Blackstone runs a real GitBook developer-documentation site at docs.blackstone.com, but every
+    path on it — including /openapi.json, /llms.txt and /robots.txt — 307s to the GitBook VA-Okta
+    visitor-auth handshake against Blackstone's Okta tenant at login.bx.com, so no contract is
+    readable without a Blackstone-issued identity.
+  evidence:
+    - url: https://docs.blackstone.com/openapi.json
+      status: 307
+    - url: https://docs.blackstone.com/llms.txt
+      status: 307
+    - url: https://www.bxaccess.com/openapi.json
+      status: 302
+    - url: https://www.blackstone.com/robots.txt
+      status: 403
+    - url: https://auth.bx.com/identity-broker/.well-known/openid-configuration
+      status: 200
+  checked: '2026-08-10'

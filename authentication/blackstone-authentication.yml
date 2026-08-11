@@ -1,0 +1,122 @@
+generated: '2026-08-10'
+method: probed
+source: >-
+  https://auth.bx.com/identity-broker/.well-known/openid-configuration and
+  https://login.bx.com/.well-known/openid-configuration (both fetched 2026-08-10, HTTP 200)
+provider: Blackstone
+providerId: blackstone
+description: >-
+  Blackstone publishes no public developer API and therefore no API key, bearer-token or
+  developer OAuth programme. What it does serve anonymously is OpenID Connect discovery metadata
+  from the two identity systems that gate its investor and documentation surfaces. This profile
+  is derived entirely from those two fetched discovery documents plus the BXAccess portal's own
+  unauthenticated runtime config. It describes how a HUMAN authenticates into Blackstone's
+  gated surfaces — it does not describe a machine-to-machine API programme, because none is
+  published.
+summary:
+  public_api_authentication: none-published
+  identity_protocol: OpenID Connect / OAuth 2.0
+  identity_providers: 2
+  self_service_registration: false
+  api_keys_issued: false
+securitySchemes:
+  - name: bxaccess_oidc
+    type: openIdConnect
+    protocol: OpenID Connect 1.0
+    issuer: https://auth.bx.com
+    openIdConnectUrl: https://auth.bx.com/identity-broker/.well-known/openid-configuration
+    applies_to: BXAccess investor portal (https://www.bxaccess.com)
+    endpoints:
+      authorization: https://auth.bx.com/oauth2/authorize
+      token: https://auth.bx.com/oauth2/token
+      userinfo: https://auth.bx.com/oauth2/userInfo
+      revocation: https://auth.bx.com/oauth2/revoke
+      end_session: https://auth.bx.com/logout
+      jwks: https://auth.bx.com/identity-broker/.well-known/jwks.json
+    response_types_supported:
+      - code
+      - token
+    token_endpoint_auth_methods_supported:
+      - client_secret_basic
+      - client_secret_post
+    id_token_signing_alg_values_supported:
+      - RS256
+    scopes_supported:
+      - openid
+      - email
+      - phone
+      - profile
+    client_registration: closed
+    notes: >-
+      The portal's public runtime config at https://www.bxaccess.com/bxa-next/env.json declares
+      a single fixed public client and the scope string "openid email profile". There is no
+      dynamic client registration endpoint on this issuer, so no third party can obtain a client
+      here. PKCE is not advertised in this discovery document.
+  - name: bx_okta_oidc
+    type: openIdConnect
+    protocol: OpenID Connect 1.0
+    issuer: https://login.bx.com
+    openIdConnectUrl: https://login.bx.com/.well-known/openid-configuration
+    applies_to: >-
+      Firmwide Blackstone SSO; observed gating docs.blackstone.com through the GitBook VA-Okta
+      visitor-auth integration
+    endpoints:
+      authorization: https://login.bx.com/oauth2/v1/authorize
+      token: https://login.bx.com/oauth2/v1/token
+      userinfo: https://login.bx.com/oauth2/v1/userinfo
+      introspection: https://login.bx.com/oauth2/v1/introspect
+      revocation: https://login.bx.com/oauth2/v1/revoke
+      end_session: https://login.bx.com/oauth2/v1/logout
+      registration: https://login.bx.com/oauth2/v1/clients
+      jwks: https://login.bx.com/oauth2/v1/keys
+    grant_types_supported:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - password
+      - 'urn:ietf:params:oauth:grant-type:device_code'
+      - 'urn:openid:params:grant-type:ciba'
+    code_challenge_methods_supported:
+      - S256
+    token_endpoint_auth_methods_supported:
+      - client_secret_basic
+      - client_secret_post
+      - client_secret_jwt
+      - private_key_jwt
+      - none
+    id_token_signing_alg_values_supported:
+      - RS256
+    id_token_encryption_alg_values_supported:
+      - RSA-OAEP-256
+      - RSA-OAEP-384
+      - RSA-OAEP-512
+    scopes_supported:
+      - openid
+      - email
+      - profile
+      - address
+      - phone
+      - offline_access
+      - groups
+    client_registration: >-
+      A dynamic client registration endpoint is advertised (Okta default). It was NOT exercised —
+      this pipeline does not create clients on a provider's tenant.
+    notes: >-
+      Standard Okta org tenant on a custom domain (login.bx.com CNAMEs to
+      bx.customdomains.okta.com). PKCE with S256 is supported.
+gated_surfaces:
+  - surface: https://docs.blackstone.com
+    gate: GitBook VA-Okta visitor-auth → login.bx.com
+    observed_status: 307 on every path
+  - surface: https://www.bxaccess.com
+    gate: OIDC login against auth.bx.com/identity-broker
+    observed_status: 302 to /auth/login on every unauthenticated path
+  - surface: https://bxnexus.my.site.com/BlackstoneAdvantagePortal/s/login/
+    gate: Salesforce Experience Cloud community login (Blackstone Advantage Portal for advisors)
+    observed_status: referenced from the BXAccess bundle; login-walled
+  - surface: https://mdm.blackstone.com/DataManagement
+    gate: WS-Federation SSO with wtrealm=https://www.bxaccess.com/
+    observed_status: 403 (Cloudflare managed challenge) to non-browser clients
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

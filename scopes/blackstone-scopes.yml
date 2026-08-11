@@ -1,0 +1,64 @@
+generated: '2026-08-10'
+method: probed
+source: >-
+  https://auth.bx.com/identity-broker/.well-known/openid-configuration and
+  https://login.bx.com/.well-known/oauth-authorization-server (both fetched 2026-08-10, HTTP 200)
+provider: Blackstone
+providerId: blackstone
+description: >-
+  Blackstone publishes no developer-facing OAuth scope catalog, because it publishes no
+  developer API. The scopes recorded here are the ones its two identity issuers actually
+  advertise in their anonymous discovery documents. They are identity scopes — who the user is —
+  not business-capability scopes. Nothing here grants access to Blackstone fund, portfolio, or
+  investor data; that access is negotiated in an LP or partner contract and mediated by a login.
+scope_count: 11
+business_scopes_published: false
+issuers:
+  - issuer: https://auth.bx.com
+    discovery: https://auth.bx.com/identity-broker/.well-known/openid-configuration
+    applies_to: BXAccess investor portal
+    scopes:
+      - scope: openid
+        description: Required OIDC scope; requests an ID token asserting the investor's identity.
+      - scope: email
+        description: Releases the authenticated investor's email address claim.
+      - scope: phone
+        description: Releases the authenticated investor's phone-number claim.
+      - scope: profile
+        description: Releases standard OIDC profile claims (name, locale, updated_at, ...).
+    requested_by_the_portal: openid email profile
+    requested_by_source: https://www.bxaccess.com/bxa-next/env.json
+  - issuer: https://login.bx.com
+    discovery: https://login.bx.com/.well-known/openid-configuration
+    applies_to: Firmwide Blackstone SSO (Okta tenant), including docs.blackstone.com visitor auth
+    scopes:
+      - scope: openid
+        description: Required OIDC scope.
+      - scope: email
+        description: Email address claim.
+      - scope: profile
+        description: Standard profile claims.
+      - scope: address
+        description: Address claim.
+      - scope: phone
+        description: Phone-number claim.
+      - scope: offline_access
+        description: Issues a refresh token so a session can be renewed without re-prompting.
+      - scope: groups
+        description: >-
+          Releases the user's Okta group memberships — the claim that drives entitlement to
+          gated Blackstone surfaces such as docs.blackstone.com.
+notes:
+  - >-
+    The org-level authorization server at https://login.bx.com/.well-known/oauth-authorization-server
+    additionally advertises Okta's own management-API scope catalog (okta.users.read,
+    okta.apps.manage, okta.logs.read, and ~60 more). Those are Okta platform scopes present on
+    every Okta tenant, NOT a Blackstone API. They are deliberately not enumerated here so the
+    catalog does not read as if Blackstone published sixty business scopes.
+  - >-
+    No scopes/permissions reference page exists on any public Blackstone property; the
+    documentation site that might carry one (docs.blackstone.com) is behind Okta visitor auth.
+docs: null
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

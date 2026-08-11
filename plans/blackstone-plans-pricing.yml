@@ -1,11 +1,23 @@
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+generated: '2026-08-10'
+method: searched
+source: >-
+  https://www.blackstone.com/our-businesses/ and https://www.bxaccess.com — searched 2026-08-10
+  for any developer/API pricing page across blackstone.com, docs.blackstone.com and the BXAccess
+  portal. None exists.
 provider: Blackstone
 providerId: blackstone
 created: '2026-05-04'
-modified: '2026-05-05'
+modified: '2026-08-10'
 reconciled: false
+plan_count: 0
+plan_count_note: >-
+  Blackstone publishes ZERO API plans. There is no developer pricing page, no self-serve tier and
+  no metered API product anywhere on its public estate. The single entry below is not a published
+  plan — it records that the only route to Blackstone data is a negotiated LP, partner, or
+  portfolio-company contract. Treat plan_count as 0 for scoring purposes.
 tags:
   - Alternative Assets
   - Finance
