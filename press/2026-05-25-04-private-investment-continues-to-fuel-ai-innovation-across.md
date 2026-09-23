@@ -1,7 +1,9 @@
 ---
 title: Private Investment Continues to Fuel AI Innovation Across ...
 url: https://www.investmentcouncil.org/private-investment-continues-to-fuel-ai-innovation-across-the-country/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Blackstone Group" press release artificial intelligence'
 position: 4
 source: serpapi-google

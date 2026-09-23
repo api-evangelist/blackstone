@@ -2,7 +2,9 @@
 title: The AI-Native Enterprise Services Firm Backed by Anthropic, Blackstone, and
   Hellman & Friedman Announces Acquisition of Fractional AI
 url: https://www.blackstone.com/news/press/the-ai-native-enterprise-services-firm-backed-by-anthropic-blackstone-and-hellman-friedman-announces-acquisition-of-fractional-ai/
-date: '2026-05-21'
+published: ''
+date_basis: harvested
+harvested: '2026-05-21'
 author: Malviya Jai
 feed_url: http://www.blackstone.com/news/feed
 ---

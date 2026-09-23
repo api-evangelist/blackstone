@@ -1,7 +1,9 @@
 ---
 title: Blackstone confirms $13 billion investment in Britain for AI ...
 url: https://www.reuters.com/technology/artificial-intelligence/blackstone-confirms-13-bln-investment-britain-ai-data-centre-2024-09-25/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Blackstone Group" press release artificial intelligence'
 position: 1
 source: serpapi-google

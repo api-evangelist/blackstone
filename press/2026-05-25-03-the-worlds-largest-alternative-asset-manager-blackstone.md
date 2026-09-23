@@ -1,7 +1,9 @@
 ---
 title: The world's largest alternative asset manager, Blackstone ...
 url: https://www.facebook.com/abc27news/posts/the-worlds-largest-alternative-asset-manager-blackstone-announced-it-has-entered/1392458756245685/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Blackstone Group" press release artificial intelligence'
 position: 3
 source: serpapi-google

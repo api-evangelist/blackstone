@@ -1,7 +1,9 @@
 ---
 title: Blackstone Announces Joint Venture with Google to Create New TPU Cloud
 url: https://www.blackstone.com/news/press/blackstone-announces-joint-venture-with-google-to-create-new-tpu-cloud/
-date: '2026-05-19'
+published: ''
+date_basis: harvested
+harvested: '2026-05-19'
 author: Malviya Jai
 feed_url: http://www.blackstone.com/news/feed
 ---
