@@ -14,7 +14,7 @@ tags:
   - Finance
   - Investment Management
   - Private Equity
-  - Real-Estate
+  - Real Estate
   - Fortune 500
 tags_raw:
   - Alternative Assets
@@ -23,6 +23,7 @@ tags_raw:
   - Private Equity
   - Real Estate
   - Fortune 500
+  - Real-Estate
 type: Index
 deliveryModel:
   model: saas
