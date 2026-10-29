@@ -1,4 +1,4 @@
-# Blackstone (blackstone)
+# Blackstone
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,83 +66,152 @@
 
 Blackstone is the world's largest alternative asset manager with over $1 trillion in assets under management across private equity, real estate, credit, and hedge fund strategies. Blackstone serves institutional investors including pension funds, sovereign wealth funds, endowments, and foundations, as well as accredited individual investors through its private wealth solutions. Technology and data platforms are central to Blackstone's investment operations and portfolio company management.
 
-**URL:** [https://www.blackstone.com](https://www.blackstone.com)
+**Areas:** Alternative Assets · Finance · Investment Management · Private Equity · Real Estate · Fortune 500
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Blackstone on APIs.io
 
-## Tags:
+Everything profiled for Blackstone is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/blackstone/](https://apis.io/providers/blackstone/)** — or go straight to one of the APIs or properties below.
 
- - Alternative Assets, Finance, Investment Management, Private Equity, Real Estate
+### APIs (1)
 
-## Timestamps
+- [Blackstone Investor Portal](https://apis.io/apis/blackstone/blackstone-investor-portal/) — Blackstone provides institutional and individual investors with access to portfolio information, capital account statements, fund documents, and reporting…
 
-- **Created:** 2026-03-21
-- **Modified:** 2026-04-21
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Blackstone Investor Portal
-Blackstone provides institutional and individual investors with access to portfolio information, capital account statements, fund documents, and reporting through its Investor Portal. API integrations may be available for institutional investors and data aggregation platforms under direct agreement with Blackstone.
+#### JSON Schema (2)
 
-**Human URL:** [https://www.blackstone.com/investor-resources/](https://www.blackstone.com/investor-resources/)
+The data models the API reads and writes.
 
-#### Tags:
+- [Blackstone Fund](https://apis.io/schemas/blackstone/blackstone-fund/)
+- [Blackstone Investor Account](https://apis.io/schemas/blackstone/blackstone-investor-account/)
 
- - Alternative Assets, Finance, Investment Management, Private Equity
+#### JSON Structure (2)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://www.blackstone.com/investor-resources/)
-- [Login](https://investor.blackstone.com)
-- [JSON Schema - Fund](json-schema/blackstone-fund-schema.json)
-- [JSON Schema - Investor Account](json-schema/blackstone-investor-account-schema.json)
-- [JSON-LD Context](json-ld/blackstone-context.jsonld)
-- [Example - Fund](examples/blackstone-fund-example.json)
-- [Example - Investor Account](examples/blackstone-investor-account-example.json)
+- [Blackstone Fund Structure](https://apis.io/json-structure/blackstone/blackstone-fund-structure/)
+- [Blackstone Investor Account Structure](https://apis.io/json-structure/blackstone/blackstone-investor-account-structure/)
 
-## Common Properties
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Blackstone Context](https://apis.io/jsonld/blackstone/blackstone-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Blackstone API Vocabulary](https://apis.io/vocabularies/blackstone/blackstone-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Blackstone Fund Example](https://apis.io/examples/blackstone/blackstone-fund-example/)
+- [Blackstone Investor Account Example](https://apis.io/examples/blackstone/blackstone-investor-account-example/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Blackstone — jsonschema rules](https://apis.io/rules/blackstone/blackstone-jsonschema-spectral-rules/)
+- [Blackstone API Rules](https://apis.io/rules/blackstone/blackstone-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Blackstone Authentication](https://apis.io/security/blackstone/blackstone-authentication/)
+- [Blackstone Domain Security](https://apis.io/security/blackstone/blackstone-domain-security/)
+- [Blackstone Vulnerability Disclosure](https://apis.io/security/blackstone/blackstone-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Blackstone Scopes](https://apis.io/scopes/blackstone/blackstone-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Blackstone Plans Pricing](https://apis.io/plans/blackstone/blackstone-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Blackstone Rate Limits](https://apis.io/rate-limits/blackstone/blackstone-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Blackstone Finops](https://apis.io/finops/blackstone/blackstone-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.blackstone.com)
 - [Documentation](https://www.blackstone.com/investor-resources/)
-- [Login](https://investor.blackstone.com)
-- [Terms of Service](https://www.blackstone.com/terms-and-conditions/)
-- [Privacy Policy](https://www.blackstone.com/privacy-policy/)
+- [Support](https://www.bxaccess.com/Auth/NeedHelp)
 - [Blog](https://www.blackstone.com/insights/)
-- [Spectral Rules](rules/blackstone-spectral-rules.yml)
-- [Naftiko Capability](capabilities/blackstone-investor-portal.yaml)
-- [Vocabulary](vocabulary/blackstone-vocabulary.yaml)
+- [Terms of service](https://www.blackstone.com/terms-and-conditions/)
+- [Privacy policy](https://www.blackstone.com/privacy-policy/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Investor Portal | Web-based portal providing investors with access to fund performance, capital account statements, distributions, and investor documents. |
-| Fund Reporting | Quarterly and annual fund-level reporting including audited financials, NAV calculations, and investor-level P&L attribution. |
-| Alternative Data Integration | Blackstone's data science and technology teams develop proprietary data products and integrations to support portfolio company operations and investment research. |
-| Portfolio Company Technology | Blackstone actively supports portfolio companies in technology transformation, digital infrastructure buildout, and enterprise software adoption. |
-| Capital Call and Distribution Notices | Automated delivery of capital call and distribution notices to investors via the portal, email, and data feed integrations. |
-| Tax Document Delivery | Annual K-1 and other tax documents delivered electronically to limited partners through the Investor Portal. |
+**Kin Score 35.8** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 29.2 |
+| Contract governance | 28.0 |
+| Operational transparency | 31.6 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 38.2 |
 
-| Name | Description |
-|------|-------------|
-| Institutional Investor Reporting | Institutional LPs access fund reporting, capital call and distribution notices, and tax documents through the investor portal or via data integrations. |
-| Portfolio Monitoring | Blackstone's investment teams use proprietary data platforms to monitor portfolio company performance metrics, market signals, and risk indicators. |
-| Data Aggregation | Third-party data aggregators and institutional investor platforms may access Blackstone investor data via direct data feed agreements. |
-| Wealth Management Distribution | Registered investment advisors and wealth managers access Blackstone alternative products through platform integrations for accredited investor clients. |
+**Agent readiness 18.9** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| iCapital Network | Blackstone distributes alternative investments to wealth management clients through iCapital Network's feeder fund and technology platform. |
-| CAIS | Blackstone alternative investment products are available through the CAIS platform for independent and institutional advisors. |
-| Yardi | Blackstone Real Estate uses Yardi for property management, accounting, and data reporting across its real estate portfolio. |
-| Allvue Systems | Blackstone's credit and private equity operations use Allvue for portfolio monitoring, investor reporting, and fund accounting. |
+**Regulatory alignment 36.3** — Horizontal (data, software, accessibility, platform)
 
-## Maintainers
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/blackstone/](https://apis.io/providers/blackstone/).
 
-**FN:** Kin Lane
+## How this profile is made
 
-**Email:** kin@apievangelist.com
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Blackstone: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/blackstone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
