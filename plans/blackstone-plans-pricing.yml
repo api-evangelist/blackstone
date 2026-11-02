@@ -1,0 +1,73 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+generated: '2026-08-10'
+method: searched
+source: >-
+  https://www.blackstone.com/our-businesses/ and https://www.bxaccess.com — searched 2026-08-10
+  for any developer/API pricing page across blackstone.com, docs.blackstone.com and the BXAccess
+  portal. None exists.
+provider: Blackstone
+providerId: blackstone
+created: '2026-05-04'
+modified: '2026-08-10'
+reconciled: false
+plan_count: 0
+plan_count_note: >-
+  Blackstone publishes ZERO API plans. There is no developer pricing page, no self-serve tier and
+  no metered API product anywhere on its public estate. The single entry below is not a published
+  plan — it records that the only route to Blackstone data is a negotiated LP, partner, or
+  portfolio-company contract. Treat plan_count as 0 for scoring purposes.
+tags:
+  - Alternative Assets
+  - Finance
+  - Investment Management
+  - Private Equity
+  - Real Estate
+description: Blackstone is an alternative asset manager (private equity, real estate, credit, life
+  sciences) and does not publish a developer / API pricing surface. The firm's revenue model is
+  management fees and carried interest on AUM, not API consumption. This artifact is a placeholder
+  in case partner / portfolio-company integrations are exposed in the future.
+sources:
+  - https://www.blackstone.com/our-businesses/
+notes: No public API or developer pricing identified at blackstone.com. All commercial relationships
+  are LP / GP / portfolio-company contracts, not API plans.
+plans:
+  - id: blackstone-partner
+    name: Partner / Contact Sales
+    type: enterprise
+    description: Custom-negotiated relationships for limited partners, portfolio companies, and
+      data-room counterparties. There is no public self-serve plan.
+    entries:
+      - label: Partner data access
+        name: partner_access
+        type: subscription
+        metric: varies
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: LP / portfolio-company contract required
+      - name: NDA and compliance review
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  plans:
+  - name: Partner / Contact Sales
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
